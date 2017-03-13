@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="loginApp">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div ng-controller="loginCtrl">
+			username:
+			<input id="name" type="text" ng-model="name" /> password
+			<input id="password" type="password" ng-model="password" />
+			<button ng-click="login()">login</button>
+			<p>{{status?"登录成功":"登录失败"}}</p>
+		</div>
+	</body>
+	<script src="angular.js"></script>
+	<script>
+	/*$().val
+	$.ajax({
+		data:{
+			
+		}
+	})*/
+		var app = angular.module("loginApp", []);
+		app.controller("loginCtrl", function($scope, $http) {
+			$scope.name;
+			$scope.password;
+			$scope.login = function() {
+				console.log("username:" + $scope.name);
+				console.log("password:" + $scope.password);
+				$http.get("login.php?username=" + $scope.name + "&password=" + $scope.password).success(function(data) {
+					console.log(data)
+					$scope.status = data.code;
+					
+				})
+			}
+		})
+	</script>
+
+</html>

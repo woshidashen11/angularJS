@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="ngModelApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div ng-controller="indexCtrl">
+			<p>{{name}}</p>
+			<p>{{arr[0]}}</p>
+			<input ng-model="getData" />
+			<p>{{getData}}</p>
+		</div>
+	</body>
+	<script src="angular.js"></script>
+	<script>
+		var app = angular.module("ngModelApp",[]);
+		app.controller("indexCtrl",function($scope,$http){
+			$scope.name = "abc";
+			$scope.arr = ["a","b"];
+			$scope.getData = 121231233;
+		})
+	</script>
+</html>
