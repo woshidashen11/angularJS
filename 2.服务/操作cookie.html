@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script>
+		var setCookie = function(name, value) {
+			var Days = 30;
+			var exp = new Date();
+			var time = exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+		      console.log(time)
+		document.cookie = name + "=" + value +";expires=" + time;
+			//$cookies[name] = value;
+		};
+		setCookie("NAME","WS")
+	</script>
+
+</html>

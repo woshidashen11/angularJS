@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+	</body>
+	<script>
+//	var a= 1;
+//	window.a
+//	window.test
+//		function test() {
+//			console.log(this);
+//		}
+
+
+//		var obj = {
+//			test: function() {
+//				console.log(this);
+//				var self = this;
+//				function a(){
+//					console.log(self);
+//				};
+//				a();
+//			}
+//		}
+//		obj.test()
+         var obj = {
+         	text:function(){
+         		console.log(this);
+         		var self = this;
+         		function a (){
+         			console.log(self);
+         		}
+         		a();
+         	}
+         };
+         obj.text();
+	</script>
+
+</html>

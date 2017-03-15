@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var $obj = {
+			name:'wsscat',
+			obj:{
+				
+			},
+			setname:function(name){
+				this.name = name;
+			},
+			getname:function(){
+				return this.name;
+			}
+		}
+		
+		function controller($obj){
+			$obj.setname("abc");
+			console.log($obj.getname());
+		}
+		
+		controller($obj);
+		
+		function controller2(){
+			
+		}
+	</script>
+</html>

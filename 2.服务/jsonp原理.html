@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button onclick="jsonp('test.php')">SEND JSONP</button>
+		<p id="p"></p>
+	</body>
+	<script>
+		function callback(data){
+			console.log(data);
+			document.getElementById("p").innerHTML = data.name;
+		}
+	</script>
+	<!--
+		jsonp 能解决跨域 是因为它用了script标签的src属性能跨域这个特性
+		jsonp其实就是动态生成一个<script></script>标签
+		这个script标签返回的是一段函数，而这段函数就是包含着一段数据
+		
+    -->
+	<!--<script>
+		function jsonp(url){
+			var script = document.createElement("script");
+			script.src = url;
+			document.body.appendChild(script);
+		}
+		jsonp("js/jsonp.js")
+	</script>-->
+
+</html>
