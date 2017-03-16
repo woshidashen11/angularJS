@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="mm">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	   <div ng-controller="index">
+	   	  {{name}}
+	   	  {{num}};
+	   </div>
+	   <div ng-controller="index2">
+	   	  {{name}}
+	   	  {{num}};
+	   </div>
+	<body>
+		<script src="angular.js"></script>
+		<script>
+			var app = angular.module("mm",[]);
+			app.controller('index',function($scope,root2Scope){
+				console.log(root2Scope.num)
+				$scope.name = "kk";
+				$scope.num = root2Scope.num;
+			});
+			
+			app.service('rootScope',function(){
+				return {
+					sum:function(a,b){
+							return a+b;
+					}
+				}
+			});
+			
+			app.service('root2Scope',function(rootScope){
+				var num = rootScope.sum(2,4)
+				return {
+					num:num,
+				}
+			});
+			
+		</script>
+		
+	</body>
+</html>

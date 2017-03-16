@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html ng-app="wscats">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div ng-controller="indexCtrl">
+			<p style="color: red;">currency</p>
+			<p>{{num|currency:'+'}}</p>
+			<p style="color: red;">lowercase</p>
+			<p>{{str|lowercase}}</p>
+			<p style="color: red">uppercase</p>
+			<p>{{str|uppercase}}</p>
+			<p style="color:red">ng-repeat</p>
+			<p>旧的写法</p>
+			<select>
+				<option value="{{opts[0].value}}">{{opts[0].name}}</option>
+				<option value="{{opts[1].value}}">{{opts[1].name}}</option>
+				<option value="{{opts[2].value}}">{{opts[2].name}}</option>
+			</select>
+			<p>新的写法</p>
+			<select>
+				<option ng-repeat="opt in opts" value="{{opt.value}}">{{opt.name}}</option>
+			</select>
+			<p style="color: red;">filter</p>
+			<!--用在处理数组筛选的逻辑上，一般配合ng-repeat和数组使用-->
+			<input ng-model="chooseOpt" />
+			<ul>
+				<li ng-repeat="opt in opts|filter:chooseOpt">你的值为：{{opt.value}}，并且你的名字为{{opt.name}}</li>
+			</ul>
+			<div ng-repeat="opt in opts">{{opt.name}}</div>
+			<select ng-model="sort">
+				<option value="name">name</option>
+				<option value="value">value</option>
+			</select>
+			<button ng-click="changeBool()">排序</button>
+			<input ng-model="chooseOpt" />
+			<p style="color: red;">orderBy</p>
+			<ul>
+				<li ng-repeat="opt in opts|orderBy:sort:bool|filter:chooseOpt">你的值为：{{opt.value}}，并且你的名字为{{opt.name}}</li>
+			</ul>
+			<p style="color: red;">limitTo</p>
+			<p>{{str|limitTo:3}}</p>
+			<input type="range" ng-model="num" />
+			<ul>
+				<li ng-repeat="opt in opts|limitTo:num">你的值为：{{opt.value}}，并且你的名字为{{opt.name}}</li>
+			</ul>
+			<p style="color: red;">date</p>
+			<!--时间戳-->
+			<p>{{date|date : "yyyy-MM-dd hh:mm:ss EEEE"}}</p>
+			<p style="color: red;">json</p>
+			<p>{{obj|json}}</p>
+			<p style="color: red;">number</p>
+			<p>{{num|number:2}}</p>
+		</div>
+	</body>
+	<script src="angular.js"></script>
+	<script>
+		//过滤器其实就是处理相同的数据，把它转化为你想要的格式
+		//其实它也是一种特殊的服务，我们所有过滤都可以用服务的方法来定义
+		var app = angular.module('wscats',[]);
+		app.controller('indexCtrl',function($scope){
+			$scope.chooseOpt = "";
+			$scope.bool = true;
+			$scope.date = new Date().getTime();
+			$scope.changeBool = function(){
+				$scope.bool=!$scope.bool
+			}
+			$scope.obj = {
+				name:'abc',
+				skill:'ps'
+			}
+			$scope.sort = "value";
+			$scope.num = 1;
+			$scope.str = 'sTrInG';
+			$scope.opts = [{
+				value:1,
+				name:'ac'
+			},
+			{
+				value:4,
+				name:'ab'
+			},
+			{
+				value:3,
+				name:'sibi'
+			},
+			{
+				value:2,
+				name:'1bASDASD'
+			}]
+			//$scope.num = currency.make($scope.num,"￥");
+		})
+		/*app.service('currency',function(){
+			return {
+				make:function(num,country){
+					return country+num+'.00';
+				}
+			}
+		})*/
+	</script>
+</html>

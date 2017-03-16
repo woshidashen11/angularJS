@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		function bibao(callback){
+			var a = 1;
+			var b = 2;
+			callback(a,b)
+		};
+		bibao(function(a,b){
+			console.log(a)
+		`	console.log(b)
+		})
+		
+		function bibao2(){
+			var a = 1;
+			var b = 2;
+			
+			return function(){
+				console.log(a)
+				console.log(b)
+			} 
+		}
+		
+		(bibao2())();
+	</script>
+</html>

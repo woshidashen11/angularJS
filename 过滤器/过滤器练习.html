@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="mm">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	   <div ng-controller="index">
+	   	  {{num|currency}};
+	   	  {{up|lowercase}};
+	   	  {{lower|uppercase}};
+	   	  <select>
+	   	  	<option ng-repeat = 'opt in opts'>{{opt.name}}</option>
+	   	  </select>
+	   	  <input ng-model="shoosOpt" />
+	   	  <ul>
+	   	  	<li ng-repeat='opt in opts|filter:shoosOpt'>{{opt.name}}</li>
+	   	  </ul>
+	   	  
+	   	  <!--排序搜索-->
+	   	   <select ng-model='sort'>
+	   	   	 <option value="name">name</option>
+	   	   	 <option value="value">value</option>
+	   	   </select>
+	   	   <button ng-click="hh()">排序</button>
+	   	   <input ng-model="shoosOpt" />
+	   	   <ul>
+	   	  	<li ng-repeat='opt in opts|orderBy:sort:bool|filter:shoosOpt'>{{opt.name}}</li>
+	   	  </ul>
+	   	  <p>{{date|date:'yyyy:mm:dd hh:mm:ss EEEE'}}</p>
+	  
+	   {{num|number:5}};
+	   </div>
+	   
+	<body>
+		<script src="angular.js"></script>
+		<script>
+			var app = angular.module("mm",[]);
+			app.controller('index',function($scope){
+				$scope.date = new Date().getTime();
+				$scope.sort="name"
+				$scope.chooseOpt ="";
+				$scope.num = 333;
+				$scope.up = "hhGGkkkL";
+				$scope.lower = "hhGGkkkL";
+				$scope.opts = [{
+					value:1,
+					name:"1m"
+				},{
+					value:3,
+					name:"2vvv"
+				},{
+					value:4,
+					name:"3meeqq"
+				},{
+					value:2,
+					name:"tmeeqq"
+				}
+				];
+				$scope.hh = function(){
+					$scope.bool = !$scope.bool;
+				}
+			});
+
+		</script>
+		
+	</body>
+</html>

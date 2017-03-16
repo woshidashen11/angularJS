@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="wscat">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div ng-controller="indexCtrl">
+			{{name}}
+		</div>
+		<div ng-controller="index2Ctrl">
+			{{name}}
+		</div>
+	</body>
+	<script src="angular.js"></script>
+	<script>
+		var app = angular.module('wscat',[]);
+		app.controller('indexCtrl',function($scope,tool2Service){
+			//$rootScope.name = 1;
+			console.log(tool2Service.num);
+			$scope.name = 'wscats';
+			tool2Service.exchange = $scope.name;
+			tool2Service.num = 1;
+			
+			console.log(tool2Service.num);
+		})
+		app.controller('index2Ctrl',function($scope,tool2Service){
+			console.log(tool2Service.num);
+			$scope.name = tool2Service.exchange;
+		})
+		app.service('toolService',function(){
+			return {
+				sum:function(a,b){
+					return a+b;
+				}
+			}
+		})
+		app.service('tool2Service',function($http,$document,toolService){
+			var num = toolService.sum(1,5); 
+			return {
+				num:num,
+			}
+		})
+	</script>
+</html>
