@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="wscat">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<div ng-controller="index">
+		{{num}}
+		</div>
+	</head>
+	<body>
+		<script src="angular.js"></script>
+		<script>
+			var app = angular.module('wscat',[]);
+			app.controller('index',function($scope,$filter){
+				$scope.name = 111;
+				$scope.num = $filter('currency')(777,'%');
+		
+			})
+		</script>
+	</body>
+</html>

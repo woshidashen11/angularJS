@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="wscat">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="js/angular.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/weui.css" />
+
+	<body>
+		<div ng-controller="indexCtrl">
+		   <!--<ng-click></ng-click>-->
+		   <div ng-click='click()'>click</div>
+		</div>
+	</body>
+	<script>
+         var app = angular.module('wscat',[]);
+         app.controller('indexCtrl',function($scope){
+         	 $scope.name= 'mm';
+         });
+        app.directive('ngClick',function(){
+        	return {
+        		restrict:'AEC',
+        		templateUrl:'xuanzekuang.html',
+//      		replace:true,
+                link:function(scope,element,attribute){
+                	console.log(scope.name)
+               }
+        	}
+        })
+        
+</script>
+</html>

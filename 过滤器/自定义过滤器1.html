@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="wscat">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<div ng-controller="index">
+			{{name|html}}
+			<p ng-bind-html="name1|html"></p>
+			{{obj|wscat:"陌陌"}}
+		</div>
+	</head>
+	<body>
+		<script src="angular.js"></script>
+		<script>
+			var app = angular.module('wscat',[]);
+			app.controller('index',function($scope){
+				$scope.name = "mm";
+				$scope.name1 = "<p>kkkkkkkkk</p>"
+				$scope.obj = {
+					name:"mm",
+					skiller:"ps",
+					height:"188lm"
+				}
+			});
+			app.filter('html',function($sce){
+				return function(html){
+					return $sce.trustAsHtml(html);
+				}
+			});
+			app.filter("wscat",function(){
+				return function(obj,parms){
+					 return obj.name+"会"+obj.skiller+"而且身高"+obj.height+parms;
+				}
+			})
+		</script>
+	</body>
+</html>
