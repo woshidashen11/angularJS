@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="wscat">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div ng-controller="indexCtrl">
+			<article>
+				<section>
+					<div ng-click='show(1)' class="{{page1?'border':''}}">第一个选项</div>
+					<div ng-click='show(2)' class="{{page2?'border':''}}">第二个选项</div>
+				</section>
+				<section ng-show='page1'>1</section>
+				<section ng-show='page2'>2</section>
+			</article>
+			<ul>
+				<li ng-repeat='arr in arrs'>{{arr.name}}</li>
+			</ul>
+			
+			<div ng-style='style'>莫小慧</div>
+		</div>
+	</body>
+	<script src="angular.js"></script>
+	<script>
+		var app = angular.module('wscat',[]);
+		app.controller('indexCtrl',function($scope,$rootScope,$http,$sce){
+		        $scope.page1 = true;
+		  		$scope.page2 = false;
+		 $scope.show=function(page){
+		  	if(page==1){
+		  		$scope.page1 = true;
+		  		$scope.page2 = false;
+		  	}else if(page==2){
+		  		$scope.page2 = true;
+		  		$scope.page1 = false;
+		  	}
+		  };
+		  $scope.arrs = [{
+		  	name:'1mm',
+		  	value:1
+		  },{
+		  	name:'2mm',
+		  	value:2
+		  },{
+		  	name:'3mm',
+		  	value:3
+		  },{
+		  	name:'4mm',
+		  	value:4
+		  }];
+		  $scope.style={
+		  	'font-size':'30px',
+		  	'color':'red',
+		  }
+		})
+	</script>
+	<style>
+	.border {
+		color:red;
+	}
+	</style>
+</html>

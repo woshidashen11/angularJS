@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="tabApp">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body ng-controller="indexCtrl">
+		<article>
+			<section>
+				<div ng-click="show(1)" class="{{page1?'border':''}}">第一个选项</div>
+				<div ng-click="show(2)" class="{{page2?'border':''}}">第二个选项</div>
+			</section>
+			<section ng-show="page1">2</section>
+			<section ng-show="page2">3</section>
+		</article>
+	</body>
+	<script src="angular.js"></script>
+	<!--angular1 vue1-->
+	<!--nodejs java php asp-->
+	<script>
+		var app = angular.module('tabApp', []);
+		app.controller('indexCtrl', function($scope) {
+			$scope.page1 = true;
+			$scope.page2 = false;
+			$scope.show = function(page) {
+				if(page == 1) {
+					$scope.page1 = true;
+					$scope.page2 = false;
+				} else if(page == 2) {
+					$scope.page1 = false;
+					$scope.page2 = true;
+				}
+			}
+		})
+	</script>
+	<style>
+		section {
+			display: flex;
+		}
+		
+		section div {
+			flex: 1;
+			text-align: center;
+			line-height: 30px;
+			height: 30px;
+		}
+		
+		.border {
+			border-bottom: 1px solid #04BE02;
+		}
+	</style>
+
+</html>
